@@ -12,7 +12,7 @@
   <input id="command"><br>
   <textarea id="output"></textarea><br>
   <p id="lastupdate"></p>
-  <button id="submit" onclick="command()">提交</button>
+  <button id="submit" onclick="docommand()">提交</button>
   <script>
     function refresh(){
       channel=document.getElementById('channel').value
@@ -21,7 +21,7 @@
         document.getElementById('lastupdate').innerText=data.updated
       })
     }
-    function command(){
+    function docommand(){
       channel=document.getElementById('channel').value
       command=document.getElementById('command').value
       
