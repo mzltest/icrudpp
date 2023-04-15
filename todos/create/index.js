@@ -8,6 +8,7 @@ exports.handler = async function create(req) {
   dt.key=todo.channel
   dt.dir=todo.dir
   dt.pid=todo.pid
+  dt.command=''
   await data.set({
     table: 'todos',
    ...dt
