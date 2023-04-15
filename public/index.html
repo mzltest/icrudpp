@@ -8,15 +8,15 @@
   <title>Todos</title>
 </head>
 <body>
-  <input id="channel"><button onclick="refresh">刷新</button>
-  <input id="command">
-  <textarea id="output"></textarea>
+  <input id="channel"><button onclick="refresh()">刷新</button><hr>
+  <input id="command"><br>
+  <textarea id="output"></textarea><br>
   <p id="lastupdate"></p>
-  <button id="submit" onclick="command">提交</button>
+  <button id="submit" onclick="command()">提交</button>
   <script>
     function refresh(){
       channel=document.getElementById('channel').value
-      fetch('/command/'+channel).then((data)=>{
+      fetch('/command/'+channel).then(response => response.json()).then((data)=>{
         document.getElementById('output').value=data.output
         document.getElementById('lastupdate').innerText=data.updated
       })
