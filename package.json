@@ -6,26 +6,26 @@
     "app": "crud-app",
     "http": [
       {
-        "/todos": {
+        "/todo/register": {
           "method": "post",
           "src": "/todos/create"
         }
       },
       {
-        "/todos": {
+        "/todo/poll/:channel": {
           "method": "get",
           "src": "/todos/read"
         }
       },
       {
-        "/todos/delete": {
+        "/todo/post": {
           "method": "post",
           "src": "/todos/delete"
         }
       },
       {
-        "/todos/:id": {
-          "method": "post",
+        "/command/:id": {
+          "method": "any",
           "src": "/todos/update"
         }
       }

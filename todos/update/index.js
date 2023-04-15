@@ -2,17 +2,14 @@ let arc = require('@architect/functions')
 let data = require('@begin/data')
 
 exports.handler = async function update(req) {
-  let todo = arc.http.helpers.bodyParser(req)
-  todo.completed = !!todo.completed
-  await data.set({
-    table: 'todos',
-    ...todo
-  })
-  return {
-    statusCode: 302,
-    headers: {
-      location: '/',
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
-    }
+  if (req.requestContext.http.method=='GET'){
+    return await data.get({'table':'todos',key:req.pathParameters.id})
+  }else
+  {
+    let b = arc.http.helpers.bodyParser(req)
+    command=b.command
+    ttt= data.get({'table':'todos',key:req.pathParameters.id})
+    ttt.command=command
+    return await data.set(ttt)
   }
 }

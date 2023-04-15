@@ -3,16 +3,15 @@ let data = require('@begin/data')
 
 exports.handler = async function create(req) {
   let todo = arc.http.helpers.bodyParser(req)
-  todo.created = Date.now()
+  dt.updated = Date.now()
+  dt.key=todo.channel
+  dt.dir=todo.dir
+  dt.pid=todo.pid
   await data.set({
     table: 'todos',
-    ...todo
+   ...dt
   })
   return {
-    statusCode: 302,
-    headers: {
-      location: '/',
-      'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
-    }
+    'ok':true
   }
 }
