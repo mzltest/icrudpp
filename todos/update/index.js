@@ -10,6 +10,6 @@ exports.handler = async function update(req) {
     command=b.command
     ttt= data.get({'table':'todos',key:req.pathParameters.id})
     ttt.command=command
-    return await data.set(ttt)
+    return await data.set({'table':'todos',...ttt})
   }
 }
