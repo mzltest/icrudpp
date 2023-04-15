@@ -8,8 +8,8 @@ exports.handler = async function update(req) {
   {
     let b = arc.http.helpers.bodyParser(req)
     command=b.command
-    ttt= data.get({'table':'todos',key:req.pathParameters.id})
+    ttt= await data.get({'table':'todos',key:req.pathParameters.id})
     ttt.command=command
-    return await data.set({'table':'todos',...ttt})
+    return await data.set(ttt)
   }
 }
